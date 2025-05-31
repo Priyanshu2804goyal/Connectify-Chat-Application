@@ -4,9 +4,10 @@ import connectdb from "./config/database.js";
 import userroute from "./routes/userrouter.js"
 import messageroute from "./routes/messageroute.js";
 import cookieParser from "cookie-parser";
+import { app,server } from "./Socket/socket.js";
 import cors from "cors";
 dotenv.config({});
-const app=express();
+//const app=express();
 const port=process.env.port||5000;
 
 // middleware
@@ -23,7 +24,7 @@ app.use("/api/v1/message",messageroute);
 app.get('/',(req,res)=>{
     res.send('Welcome to chat application website');
 })
-app.listen(port,()=>{
+server.listen(port,()=>{
     connectdb();
     console.log(`server listen at port ${port}`);
 })

@@ -22,10 +22,10 @@ const Login=()=>{
       },
       withCredentials:true
      })
-      //console.log(res);
+      // console.log(res);
         navigate("/");
         dispatch(setAuthUser(res.data));
-        console.log(res);
+        console.log(res.data);
     }catch(error){
       toast.error(error.response.data.message);
       console.log(error);

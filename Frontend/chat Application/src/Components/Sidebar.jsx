@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOtherUsers } from "../redux/userSlice";
+import { setAuthUser, setOtherUsers } from "../redux/userSlice";
 const Sidebar=()=>{
     const [search,setSearch]=useState("");
     const {OtherUsers}=useSelector(store=>store.user);
@@ -17,6 +17,7 @@ const Sidebar=()=>{
             const res=await axios.get(`http://localhost:8080/api/v1/user/logout`);
             navigate("/login");
             toast.success(res.data.message);
+            dispatch(setAuthUser(null));
         }catch(err){
             console.log(err);
         }
